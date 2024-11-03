@@ -1,12 +1,11 @@
 {
   "name": "pyxisdb",
-  "version": "beta-0.0.1",
+  "version": "0.0.1-beta",
   "description": "A real-time database package for communicating with Pyxiscloud server using WebSockets",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "prepublishOnly": "npm test && npm run lint"
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "database",
