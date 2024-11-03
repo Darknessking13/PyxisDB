@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/pyxisdb.git"
+    "url": "https://github.com/Darknessking13/PyxisDB.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/pyxisdb/issues"
+    "url": "https://github.com/Darknessking13/PyxisDB/issues"
   },
-  "homepage": "https://github.com/yourusername/pyxisdb#readme",
+  "homepage": "https://github.com/Darknessking13/PyxisDB/pyxisdb#readme",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -51,8 +51,4 @@
       "name": "i._.become_a_devil"
     }
   ],
-  "funding": {
-    "type": "individual",
-    "url": "https://example.com/donate"
-  }
 }
