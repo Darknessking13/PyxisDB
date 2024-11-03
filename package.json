@@ -1,0 +1,58 @@
+{
+  "name": "pyxisdb",
+  "version": "1.0.0",
+  "description": "A real-time database package for communicating with Pyxiscloud server using WebSockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "prepublishOnly": "npm test && npm run lint"
+  },
+  "keywords": [
+    "database",
+    "real-time",
+    "websocket",
+    "pyxiscloud",
+    "schema",
+    "model",
+    "nosql"
+  ],
+  "author": "i._.become_a_devil",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "jest": "^27.0.0",
+    "nodemon": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/pyxisdb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/pyxisdb/issues"
+  },
+  "homepage": "https://github.com/yourusername/pyxisdb#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "pyxisdb.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "contributors": [
+    {
+      "name": "i._.become_a_devil"
+    }
+  ],
+  "funding": {
+    "type": "individual",
+    "url": "https://example.com/donate"
+  }
+}
