@@ -3,6 +3,7 @@
 *PyxisDB* is a real-time database package for communicating with Pyxiscloud server. It provides a simple and efficient way to interact with your database using WebSocket connections.
 
 ## Installation
+First you need to install, Check [PyxiCloud](https://github.com/Darknessking13/PyxiCloud)
 
 To install PyxisDB, use npm:
 
