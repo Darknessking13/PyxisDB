@@ -1,4 +1,4 @@
-import PyxisDB from './lib/esm/pyxisdb';
+const PyxisDB = require('./lib/cjs/pyxisdb');
 
 
 
@@ -30,4 +30,4 @@ const pyx = {
 
 
 
-export default pyx;
+module.exports = pyx
