@@ -1,8 +1,17 @@
 {
   "name": "pyxisdb",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "A real-time database package for communicating with Pyxiscloud server using WebSockets",
-  "main": "index.js",
+  "main": "pyxisdb.cjs",
+  "module": "pyxisdb.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./pyxisdb.cjs",
+      "import": "./pyxisdb.js",
+      "default": "./pyxisdb.cjs"
+    },
+  }
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -36,14 +45,19 @@
     "node": ">=14.0.0"
   },
   "files": [
-    "index.js",
     "pyxisdb.js",
+    "pyxisdb.cjs",
+    "lib/esm/pyxis.js",
+    "lib/cjs/pyxis.cjs",
     "README.md",
     "LICENSE"
   ],
   "contributors": [
     {
       "name": "i._.become_a_devil"
+    },
+    {
+      "name": "Iscordian"
     }
   ]
 }
