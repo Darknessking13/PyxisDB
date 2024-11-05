@@ -1,6 +1,6 @@
 {
   "name": "pyxisdb",
-  "version": "0.0.2-beta",
+  "version": "0.0.3-beta",
   "description": "A real-time database package for communicating with Pyxiscloud server using WebSockets",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
