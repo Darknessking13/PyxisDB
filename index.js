@@ -1,3 +1,0 @@
-/*
-No need for this file
-*/

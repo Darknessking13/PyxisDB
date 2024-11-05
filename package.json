@@ -2,19 +2,14 @@
   "name": "pyxisdb",
   "version": "0.0.2-beta",
   "description": "A real-time database package for communicating with Pyxiscloud server using WebSockets",
-  "main": "pyxisdb.cjs",
-  "module": "pyxisdb.js",
-  "type": "module",
-  "exports": {
-    ".": {
-      "require": "./pyxisdb.cjs",
-      "import": "./pyxisdb.js",
-      "default": "./pyxisdb.cjs"
-    },
-  }
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "build": "tsc"
+  },
+  "dependencies": {
+    "events": "^3.3.0",
+    "ws": "^8.0.0"
   },
   "keywords": [
     "database",
@@ -27,15 +22,16 @@
   ],
   "author": "i._.become_a_devil",
   "license": "MIT",
-  "dependencies": {
-    "ws": "^8.18.0"
-  },
   "devDependencies": {
-    "nodemon": "^2.0.0"
+    "@types/node": "^22.9.0",
+    "@types/ws": "^8.5.13",
+    "nodemon": "^2.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Darknessking123/pyxisdb.git"
+    "url": "https://github.com/Darknessking123/PyxisDB.git"
   },
   "bugs": {
     "url": "https://github.com/Darknessking13/PyxisDB/issues"
@@ -45,19 +41,14 @@
     "node": ">=14.0.0"
   },
   "files": [
-    "pyxisdb.js",
-    "pyxisdb.cjs",
-    "lib/esm/pyxis.js",
-    "lib/cjs/pyxis.cjs",
+    "dist",
+    "src/index.ts",
     "README.md",
     "LICENSE"
   ],
   "contributors": [
     {
       "name": "! Ｄᴇᴠɪʟɪѕʜ ｃʜʀᴏɴɪᴄʟᴇѕ"
-    },
-    {
-      "name": "Iscordian"
     }
   ]
 }
