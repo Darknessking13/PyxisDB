@@ -107,7 +107,7 @@ All model methods return Promises and support TypeScript types:
 
 ## Changelog
 
-### Version 0.0.3-beta
+### Version 0.0.4-beta
 - Added full TypeScript support with type definitions
 - Introduced new query methods: findOne, insertMany, updateMany, deleteOne, deleteMany
 - Improved WebSocket connection handling with heartbeat mechanism
