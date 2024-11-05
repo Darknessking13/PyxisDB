@@ -2,6 +2,8 @@
 
 *PyxisDB* is a real-time database package for communicating with Pyxiscloud server. It provides a simple and efficient way to interact with your database using WebSocket connections.
 
+## Note: I just noticed some issues with package, Im gonna fix it as soon as it Possible
+
 ## Documents
 *https://docs.pyxisdb.letz.dev/*
 
