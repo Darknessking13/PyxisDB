@@ -8,25 +8,36 @@ export declare class Schema {
 declare class PyxisDB extends EventEmitter {
     private ws;
     private connected;
+    private authenticated;
+    private sessionToken;
     private requestQueue;
     private requestTimeout;
     private connectionPromise;
-    connect(url: string): Promise<void>;
+    private credentials;
+    connect(url: string, credentials: {
+        username: string;
+        password: string;
+    }): Promise<void>;
+    private authenticate;
     private setupHeartbeat;
-    sendRequest(type: string, data: any): Promise<any>;
+    private sendRequestUnencrypted;
+    sendRequest<T>(type: string, data: any): Promise<T>;
     model(collectionName: string, schema?: Schema): {
-        find(query?: Record<string, any>): Promise<any>;
-        findOne(query?: Record<string, any>): Promise<any>;
-        insertOne(document: Record<string, any>): Promise<any>;
-        insertMany(documents: Record<string, any>[]): Promise<any>;
-        updateOne(query: Record<string, any>, updateFields: Record<string, any>): Promise<any>;
-        updateMany(query: Record<string, any>, updateFields: Record<string, any>): Promise<any>;
-        deleteOne(query: Record<string, any>): Promise<any>;
-        deleteMany(query: Record<string, any>): Promise<any>;
+        find(query?: Record<string, any>): Promise<unknown>;
+        findOne(query?: Record<string, any>): Promise<unknown>;
+        insertOne(document: Record<string, any>): Promise<unknown>;
+        insertMany(documents: Record<string, any>[]): Promise<unknown>;
+        updateOne(query: Record<string, any>, updateFields: Record<string, any>): Promise<unknown>;
+        updateMany(query: Record<string, any>, updateFields: Record<string, any>): Promise<unknown>;
+        deleteOne(query: Record<string, any>): Promise<unknown>;
+        deleteMany(query: Record<string, any>): Promise<unknown>;
     };
 }
 export interface Pyx {
-    connect: (url: string) => Promise<void>;
+    connect: (url: string, credentials: {
+        username: string;
+        password: string;
+    }) => Promise<void>;
     Schema: new (definition: Record<string, any>, collectionName: string) => Schema;
     model: (collectionName: string, schema?: Schema) => ReturnType<PyxisDB['model']>;
 }

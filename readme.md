@@ -1,121 +1,134 @@
 # PyxisDB
 
-*PyxisDB* is a real-time database package for communicating with Pyxiscloud server. It provides a simple and efficient way to interact with your database using WebSocket connections.
+*PyxisDB* is a real-time database package for communicating with PyxiCloud server. It provides a secure and efficient way to interact with your database using WebSocket connections.
 
-## Documents
+## Documentation
 *https://docs.pyxisdb.letz.dev/*
 
 ## Installation
-First you need to install, Check [PyxiCloud](https://github.com/Darknessking13/PyxiCloud)
-
-To install PyxisDB, use npm:
+First, you need to install and set up [PyxiCloud](https://github.com/Darknessking13/PyxiCloud).
 
 ```bash
 npm install pyxisdb@latest
 ```
 
-## Usage
+## Quick Start
 
-PyxisDB now supports both JavaScript and TypeScript. Here's how to import and use it:
-
-### JavaScript
 ```javascript
 const pyx = require('pyxisdb').default;
 ```
 
-### TypeScript
 ```typescript
 import pyx from "pyxisdb";
-```
 
-Here's a basic example of how to use PyxisDB:
+// Connect with authentication
+pyx.connect('pyx://<hostname/ip>:<port>', {
+  username: 'your_username',
+  password: 'your_password'
+})
+.then(() => {
+  console.log('Connected and authenticated');
+  
+  // Define a schema
+  const userSchema = new pyx.Schema({
+    name: { type: 'string', required: true },
+    email: { type: 'string', required: true, unique: true }
+  }, 'users');
 
-```typescript
-// Connect to the Pyxiscloud server
-pyx.connect('pyx://<hostname/ip>:<port>')
-  .then(() => {
-    console.log('Connected to PyxisCloud');
-    
-    // Define a schema
-    const userSchema = new pyx.Schema({
-      name: { type: 'string', required: true },
-      age: { type: 'number' },
-      email: { type: 'string', required: true }
-    }, 'users');
-
-    // Create a model
-    const User = pyx.model('users', userSchema);
-
-    // Insert a document
-    User.insertOne({
-      name: 'John Doe',
-      age: 30,
-      email: 'john@example.com'
-    })
-    .then(result => console.log('Inserted:', result))
-    .catch(error => console.error('Insert error:', error));
-
-    // Find documents
-    User.find({ age: { $gte: 18 } })
-      .then(users => console.log('Adult users:', users))
-      .catch(error => console.error('Find error:', error));
+  // Create and use model
+  const User = pyx.model('users', userSchema);
+  
+  // Insert data
+  User.insertOne({
+    name: 'John Doe',
+    email: 'john@example.com'
   })
-  .catch(error => console.error('Connection error:', error));
+  .then(result => console.log('User created:', result));
+})
+.catch(error => console.error('Connection error:', error));
 ```
 
 ## Features
 
-- Real-time database operations using WebSocket protocol
-- Full TypeScript support with type definitions
-- Schema validation and management
-- Automatic reconnection handling
-- Support for complex queries and operations
-- Event-based communication
-- Heartbeat mechanism for connection stability
-- Request timeout handling
-- Comprehensive error handling
+- 🔐 Secure authentication system
+- 📦 Automatic backup management
+- 🔄 Robust connection handling with auto-reconnect
+- ✨ Schema validation
+- 🚀 Real-time operations
+- 💪 TypeScript support
+- ⚡ High-performance WebSocket protocol
+- 🛡️ Rate limiting protection
 
 ## API Reference
 
 ### Connection
+```typescript
+pyx.connect(url: string, auth: {
+  username: string;
+  password: string;
+}): Promise<void>
+```
 
-- `pyx.connect(url: string): Promise<void>`: Connects to the Pyxiscloud server
+### Schema Definition
+```typescript
+new pyx.Schema({
+  field: {
+    type: string;
+    required?: boolean;
+    unique?: boolean;
+    default?: any;
+  }
+}, collectionName: string)
+```
 
-### Schema
-
-- `new pyx.Schema(definition: Record<string, any>, collectionName: string)`: Creates a new schema
-
-### Model Methods
-
-All model methods return Promises and support TypeScript types:
+### Model Operations
 
 #### Query Operations
-- `find(query?: Record<string, any>)`: Finds all documents matching the query
-- `findOne(query?: Record<string, any>)`: Finds the first document matching the query
+```typescript
+// Find documents
+Model.find(query?: Record<string, any>)
+Model.findOne(query?: Record<string, any>)
 
-#### Insert Operations
-- `insertOne(document: Record<string, any>)`: Inserts a single document
-- `insertMany(documents: Record<string, any>[])`: Inserts multiple documents
+// Insert documents
+Model.insertOne(document: Record<string, any>)
+Model.insertMany(documents: Record<string, any>[])
 
-#### Update Operations
-- `updateOne(query: Record<string, any>, updateFields: Record<string, any>)`: Updates the first matching document
-- `updateMany(query: Record<string, any>, updateFields: Record<string, any>)`: Updates all matching documents
+// Update documents
+Model.updateOne(query: Record<string, any>, update: Record<string, any>)
+Model.updateMany(query: Record<string, any>, update: Record<string, any>)
 
-#### Delete Operations
-- `deleteOne(query: Record<string, any>)`: Deletes the first matching document
-- `deleteMany(query: Record<string, any>)`: Deletes all matching documents
+// Delete documents
+Model.deleteOne(query: Record<string, any>)
+Model.deleteMany(query: Record<string, any>)
+```
+
+## Query Operators
+
+```typescript
+// Comparison
+{ field: { $eq: value } }    // equals
+{ field: { $ne: value } }    // not equals
+{ field: { $gt: value } }    // greater than
+{ field: { $gte: value } }   // greater than or equal
+{ field: { $lt: value } }    // less than
+{ field: { $lte: value } }   // less than or equal
+{ field: { $in: [values] } } // in array
+{ field: { $nin: [values] }} // not in array
+```
 
 ## Changelog
 
-### Version 0.0.4-beta
-- Added full TypeScript support with type definitions
-- Introduced new query methods: findOne, insertMany, updateMany, deleteOne, deleteMany
-- Improved WebSocket connection handling with heartbeat mechanism
-- Added request timeout handling
-- Enhanced error handling and type safety
-- Updated documentation and examples
-- Added TypeScript configuration and build setup
+### Version 0.0.5-beta (Latest)
+- 🔐 Added authentication system with secure token management
+- 🔐 Added encryption/decryption for data
+- 💾 Implemented automatic backup system with configurable intervals
+- 🔄 Enhanced connection stability with improved reconnection logic
+- 🛡️ Added IP whitelist/blacklist support
+- ⚡ Improved WebSocket protocol handling
+- 🔒 Added rate limiting protection
+- 📝 Updated documentation and examples
 
 ## License
 
-``This project is licensed under the MIT License.``
+This project is licensed under the MIT License.
+```
